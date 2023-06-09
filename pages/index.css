@@ -1,0 +1,13 @@
+/* normalize */
+@import "../vendor/normalize.css";
+
+/* page */
+@import "../blocks/page/page.css";
+
+/* main-page */
+@import "../blocks/main-page/main-page.css";
+
+/* header */
+@import "../blocks/header/header.css";
+@import "../blocks/header/__logo/header__logo.css";
+@import "../blocks/header/__line/header__line.css";
