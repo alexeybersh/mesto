@@ -3,6 +3,7 @@
   padding: 0;
   width: 100%;
   display: block;
+  object-fit: fill;
   background: #c4c4c4;
   border-radius: 10px 10px 0px 0px;
 }
