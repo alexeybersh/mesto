@@ -1,6 +1,9 @@
 /* normalize */
 @import "../vendor/normalize.css";
 
+/* font */
+@import "../vendor/fonts/fonts.css";
+
 /* page */
 @import "../blocks/page/page.css";
 
@@ -11,3 +14,22 @@
 @import "../blocks/header/header.css";
 @import "../blocks/header/__logo/header__logo.css";
 @import "../blocks/header/__line/header__line.css";
+
+/* profile */
+@import "../blocks/profile/profile.css";
+@import "../blocks/profile/__intro/profile__intro.css";
+@import "../blocks/profile/__avatar/profile__avatar.css";
+@import "../blocks/profile/__profile-info/profile__profile-info.css";
+@import "../blocks/profile/__title/profile__title.css";
+@import "../blocks/profile/__subtitle/profile__subtitle.css";
+@import "../blocks/profile/__edit-button/profile__edit-button.css";
+@import "../blocks/profile/__add-button/profile__add-button.css";
+
+/* elements */
+@import "../blocks/elements/elements.css";
+@import "../blocks/elements/__list/elements__list.css";
+@import "../blocks/elements/__element/elements__element.css";
+@import "../blocks/elements/__masc-group/elements__masc-group.css";
+@import "../blocks/elements/element__description/element__description.css";
+@import "../blocks/elements/__title/element__title.css";
+@import "../blocks/elements/__group/elements__group.css";
