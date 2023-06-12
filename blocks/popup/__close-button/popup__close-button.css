@@ -4,9 +4,23 @@
   height: 32px;
   right: -40px;
   top: -40px;
-  background: #ffffff;
   background: transparent;
   border: none;
   background-image: url("../../../images/Close\ Icon.svg");
+  background-repeat: no-repeat;
+  background-position: center;
   cursor: pointer;
+}
+
+.popup__close-button:hover {
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 768px) {
+  .popup__close-button {
+    width: 20px;
+    height: 20px;
+    right: 0px;
+    top: -36px;
+  }
 }

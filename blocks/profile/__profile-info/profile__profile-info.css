@@ -2,7 +2,11 @@
   margin: 0;
   padding: 0 0 0 30px;
   max-width: 336px;
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center;
+}
+
+@media screen and (max-width: 768px) {
+  .profile__profile-info {
+    padding-left: 0px;
+    max-width: 282px;
+  }
 }

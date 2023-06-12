@@ -8,3 +8,11 @@
   background-size: contain;
   background-position: 0;
 }
+
+@media screen and (max-width: 768px) {
+  .header__logo {
+    margin-left: 27px;
+    width: 103.74px;
+    height: 24.4px;
+  }
+}

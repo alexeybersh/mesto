@@ -23,12 +23,14 @@
             alt="Фото Жак-Ив Кусто"
           />
           <div class="profile__profile-info">
-            <h1 class="profile__title">Жак-Ив Кусто</h1>
-            <button class="profile__edit-button"></button>
+            <div class="profile__first-row">
+              <h1 class="profile__title">Жак-Ив Кусто</h1>
+              <button class="profile__edit-button"></button>
+            </div>
             <p class="profile__subtitle">Иследователь океана</p>
           </div>
         </div>
-        <buttom class="profile__add-button"></buttom>
+        <button class="profile__add-button"></button>
       </section>
       <section class="elements">
         <ul class="elements__list">
@@ -40,7 +42,7 @@
             />
             <div class="elements__description">
               <h2 class="elements__title">Самарканд</h2>
-              <div class="elements__group"></div>
+              <button class="elements__group-button"></button>
             </div>
           </li>
           <li class="elements__element">
@@ -51,7 +53,7 @@
             />
             <div class="elements__description">
               <h2 class="elements__title">Сербия</h2>
-              <div class="elements__group"></div>
+              <button class="elements__group-button"></button>
             </div>
           </li>
           <li class="elements__element">
@@ -62,7 +64,7 @@
             />
             <div class="elements__description">
               <h2 class="elements__title">Милан</h2>
-              <div class="elements__group"></div>
+              <button class="elements__group-button"></button>
             </div>
           </li>
           <li class="elements__element">
@@ -73,7 +75,7 @@
             />
             <div class="elements__description">
               <h2 class="elements__title">Таиланд</h2>
-              <div class="elements__group"></div>
+              <button class="elements__group-button"></button>
             </div>
           </li>
           <li class="elements__element">
@@ -84,7 +86,7 @@
             />
             <div class="elements__description">
               <h2 class="elements__title">Альпы</h2>
-              <div class="elements__group"></div>
+              <button class="elements__group-button"></button>
             </div>
           </li>
           <li class="elements__element">
@@ -95,25 +97,33 @@
             />
             <div class="elements__description">
               <h2 class="elements__title">Индонезия</h2>
-              <div class="elements__group"></div>
+              <button class="elements__group-button"></button>
             </div>
           </li>
         </ul>
       </section>
     </main>
-    <dialog class="popup">
-      <button class="popup__close-button"></button>
-      <div class="popup__content">
-        <h2 class="popup__title">Редактировать профиль</h2>
-        <p class="popup__profile-title">Жак-Ив Кусто</p>
-        <div class="popup__line"></div>
-        <p class="popup__profile-subtitle">Иследователь океана</p>
-        <div class="popup__line"></div>
-        <button class="popup__save-button">Сохранить</button>
-      </div>
-    </dialog>
+    <div class="popup-fade">
+      <dialog class="popup">
+        <button class="popup__close-button"></button>
+        <form action="#" class="popup__content">
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <input class="popup__profile-title" placeholder="Имя" value="#" />
+          <div class="popup__line"></div>
+          <input
+            class="popup__profile-subtitle"
+            placeholder="О себе"
+            value="#"
+          />
+          <div class="popup__line"></div>
+          <button type="submit" class="popup__save-button">Сохранить</button>
+        </form>
+      </dialog>
+    </div>
     <footer class="footer">
-      <p class="footer__subtitle">© 2020 Mesto Russia</p>
+      <p class="footer__author">© 2020 Mesto Russia</p>
     </footer>
+    <script src="https://yandex.st/jquery/2.1.1/jquery.min.js"></script>
+    <script src="./index.js"></script>
   </body>
 </html>

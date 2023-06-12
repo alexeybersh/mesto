@@ -20,6 +20,7 @@
 @import "../blocks/profile/__intro/profile__intro.css";
 @import "../blocks/profile/__avatar/profile__avatar.css";
 @import "../blocks/profile/__profile-info/profile__profile-info.css";
+@import "../blocks/profile/__first-row/profile__first-row.css";
 @import "../blocks/profile/__title/profile__title.css";
 @import "../blocks/profile/__subtitle/profile__subtitle.css";
 @import "../blocks/profile/__edit-button/profile__edit-button.css";
@@ -32,7 +33,10 @@
 @import "../blocks/elements/__masc-group/elements__masc-group.css";
 @import "../blocks/elements/element__description/elements__description.css";
 @import "../blocks/elements/__title/elements__title.css";
-@import "../blocks/elements/__group/elements__group.css";
+@import "../blocks/elements/__group-button/elements__group-button.css";
+
+/* popup-fade */
+@import "../blocks/popup-fade/popup-fade.css";
 
 /* popup */
 @import "../blocks/popup/popup.css";
@@ -46,4 +50,4 @@
 
 /* footer */
 @import "../blocks/footer/footer.css";
-@import "../blocks/footer/__subtitle/footer__subtitle.css";
+@import "../blocks/footer/__author/footer__author.css";

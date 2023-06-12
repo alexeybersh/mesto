@@ -1,6 +1,5 @@
 .popup {
-  padding: 34px 36px 37px;
-  position: relative;
+  padding: 25px 22px;
   position: fixed;
   top: 0;
   right: 0;
@@ -11,5 +10,5 @@
   align-items: center;
   border-radius: 10px;
   border: none;
-  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
 }

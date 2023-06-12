@@ -4,3 +4,9 @@
   font-style: normal;
   background-color: #000000;
 }
+
+@media screen and (max-width: 768px) {
+  .footer {
+    padding: 0 19px 36px;
+  }
+}

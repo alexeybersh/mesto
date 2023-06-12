@@ -11,4 +11,18 @@
   background-repeat: no-repeat;
   background-size: 22px;
   background-position: center;
+  background-color: #000000;
+  cursor: pointer;
+}
+
+.profile__add-button:hover {
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 768px) {
+  .profile__add-button {
+    margin-top: 36px;
+    width: 282px;
+    background-size: 16px;
+  }
 }
