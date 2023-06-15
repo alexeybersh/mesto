@@ -2,11 +2,10 @@
   margin: 0;
   padding: 0;
   padding-left: max(200px, 0);
-  background: black;
   max-width: 1280px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 890px) {
   .main-page {
     padding: 0;
   }

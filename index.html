@@ -10,11 +10,10 @@
     <title>Mesto</title>
   </head>
   <body class="page">
+    <header class="header">
+      <div class="header__logo"></div>
+    </header>
     <main class="main-page">
-      <header class="header">
-        <div class="header__logo"></div>
-        <div class="header__line"></div>
-      </header>
       <section class="profile">
         <div class="profile__intro">
           <img
@@ -25,12 +24,12 @@
           <div class="profile__profile-info">
             <div class="profile__first-row">
               <h1 class="profile__title">Жак-Ив Кусто</h1>
-              <button class="profile__edit-button"></button>
+              <button type="button" class="profile__edit-button"></button>
             </div>
-            <p class="profile__subtitle">Иследователь океана</p>
+            <p class="profile__subtitle">Исcледователь океана</p>
           </div>
         </div>
-        <button class="profile__add-button"></button>
+        <button type="button" class="profile__add-button"></button>
       </section>
       <section class="elements">
         <ul class="elements__list">
@@ -42,7 +41,7 @@
             />
             <div class="elements__description">
               <h2 class="elements__title">Самарканд</h2>
-              <button class="elements__group-button"></button>
+              <button type="button" class="elements__group-button"></button>
             </div>
           </li>
           <li class="elements__element">
@@ -53,7 +52,7 @@
             />
             <div class="elements__description">
               <h2 class="elements__title">Сербия</h2>
-              <button class="elements__group-button"></button>
+              <button type="button" class="elements__group-button"></button>
             </div>
           </li>
           <li class="elements__element">
@@ -75,7 +74,7 @@
             />
             <div class="elements__description">
               <h2 class="elements__title">Таиланд</h2>
-              <button class="elements__group-button"></button>
+              <button type="button" class="elements__group-button"></button>
             </div>
           </li>
           <li class="elements__element">
@@ -97,33 +96,35 @@
             />
             <div class="elements__description">
               <h2 class="elements__title">Индонезия</h2>
-              <button class="elements__group-button"></button>
+              <button type="button" class="elements__group-button"></button>
             </div>
           </li>
         </ul>
       </section>
     </main>
-    <div class="popup-fade">
-      <dialog class="popup">
-        <button class="popup__close-button"></button>
-        <form action="#" class="popup__content">
-          <h2 class="popup__title">Редактировать профиль</h2>
-          <input class="popup__profile-title" placeholder="Имя" value="#" />
-          <div class="popup__line"></div>
-          <input
-            class="popup__profile-subtitle"
-            placeholder="О себе"
-            value="#"
-          />
-          <div class="popup__line"></div>
-          <button type="submit" class="popup__save-button">Сохранить</button>
-        </form>
-      </dialog>
+    <div class="popup">
+      <div class="popup__content">
+        <button type="button" class="popup__close-button"></button>
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <input
+          class="popup__profile-title popup__profile-title_width_field"
+          name="title"
+          placeholder="Имя"
+          value="#"
+        />
+        <input
+          class="popup__profile-subtitle popup__profile-subtitle_width_field"
+          name="subtitle"
+          placeholder="О себе"
+          value="#"
+        />
+        <button type="submit" class="popup__save-button">Сохранить</button>
+      </div>
     </div>
     <footer class="footer">
       <p class="footer__author">© 2020 Mesto Russia</p>
     </footer>
     <script src="https://yandex.st/jquery/2.1.1/jquery.min.js"></script>
-    <script src="./index.js"></script>
+    <script src="./script/index.js"></script>
   </body>
 </html>

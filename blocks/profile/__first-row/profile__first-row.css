@@ -1,6 +1,7 @@
 .profile__first-row {
   margin: 0;
   padding: 0;
+  position: relative;
   display: flex;
 }
 

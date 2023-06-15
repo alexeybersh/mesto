@@ -4,7 +4,7 @@
   max-width: 336px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 880px) {
   .profile__profile-info {
     padding-left: 0px;
     max-width: 282px;

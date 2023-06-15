@@ -15,3 +15,8 @@
 .elements__group-button:hover {
   opacity: 0.5;
 }
+
+.elements__group-button:active {
+  background-image: url("../../../images/Union.svg");
+  opacity: 1;
+}
