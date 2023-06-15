@@ -5,6 +5,7 @@ const editButtonElement = document.querySelector(".profile__edit-button");
 const closeButtonElement = document.querySelector(".popup__close-button");
 const saveButtonElement = document.querySelector(".popup__save-button");
 const popupElement = document.querySelector(".popup");
+const formElement = document.querySelector(".popup__form");
 const inputName = document.querySelector(".popup__profile-title_input_text");
 const inputjob = document.querySelector(".popup__profile-subtitle_input_text");
 
@@ -27,8 +28,8 @@ function handleFormSubmit(evt) {
   popupElement.classList.toggle("popup_opened");
 }
 
-saveButtonElement.addEventListener("click", handleFormSubmit);
+formElement.addEventListener("submit", handleFormSubmit);
 
-closeButtonElement.addEventListener("submit", () => {
+closeButtonElement.addEventListener("click", () => {
   popupElement.classList.toggle("popup_opened");
 });
