@@ -29,6 +29,6 @@ function handleFormSubmit(evt) {
 
 saveButtonElement.addEventListener("click", handleFormSubmit);
 
-closeButtonElement.addEventListener("click", () => {
+closeButtonElement.addEventListener("submit", () => {
   popupElement.classList.toggle("popup_opened");
 });
