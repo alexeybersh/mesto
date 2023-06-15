@@ -41,11 +41,8 @@
 @import "../blocks/popup/__close-button/popup__close-button.css";
 @import "../blocks/popup/__title/popup__title.css";
 @import "../blocks/popup/__profile-title/popup__profile-title.css";
-@import "../blocks/popup/__line/popup__line.css";
 @import "../blocks/popup/__profile-subtitle/popup__profile-subtitle.css";
 @import "../blocks/popup/__save-button/popup__save-button.css";
-@import "../blocks/popup/__profile-title/_width_field/popup__profile-title_width_field.css";
-@import "../blocks/popup/__profile-subtitle/_width_field/popup__profile-subtitle_width_field.css";
 @import "../blocks/popup/_opened/popup_opened.css";
 
 /* footer */
