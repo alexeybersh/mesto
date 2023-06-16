@@ -6,8 +6,8 @@ const closeButtonElement = document.querySelector(".popup__close-button");
 const saveButtonElement = document.querySelector(".popup__save-button");
 const popupElement = document.querySelector(".popup");
 const formElement = document.querySelector(".popup__form");
-const inputName = document.querySelector(".popup__profile_input_text");
-const inputjob = document.querySelector(".popup__profile_input_text");
+const inputName = document.querySelector(".popup__profile_input-name_text");
+const inputjob = document.querySelector(".popup__profile_input-job_text");
 
 editButtonElement.addEventListener("click", () => {
   popupOpened();
