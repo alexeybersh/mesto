@@ -10,7 +10,7 @@ const inputName = document.querySelector(".popup__profile-title_input_text");
 const inputjob = document.querySelector(".popup__profile-subtitle_input_text");
 
 editButtonElement.addEventListener("click", () => {
-  popupElement.classList.toggle("popup_opened");
+  popupOpened();
 
   inputName.value = nameInput.textContent;
   inputjob.value = jobInput.textContent;
@@ -19,17 +19,18 @@ editButtonElement.addEventListener("click", () => {
 function handleFormSubmit(evt) {
   evt.preventDefault();
 
-  inputName.value = inputName.value;
-  inputjob.value = inputjob.value;
-
   nameInput.textContent = inputName.value;
   jobInput.textContent = inputjob.value;
 
-  popupElement.classList.toggle("popup_opened");
+  popupOpened();
 }
 
 formElement.addEventListener("submit", handleFormSubmit);
 
 closeButtonElement.addEventListener("click", () => {
-  popupElement.classList.toggle("popup_opened");
+  popupOpened();
 });
+
+function popupOpened() {
+  popupElement.classList.toggle("popup_opened");
+}

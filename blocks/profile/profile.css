@@ -7,8 +7,9 @@
   align-items: center;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 890px) {
   .profile {
+    position: relative;
     flex-direction: column;
     padding: 42px 0 0;
   }
