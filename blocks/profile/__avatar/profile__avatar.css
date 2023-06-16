@@ -7,3 +7,9 @@
   object-fit: cover;
   object-position: center;
 }
+
+@media screen and (max-width: 890px) {
+  .profile__avatar {
+    padding-bottom: 26px;
+  }
+}
