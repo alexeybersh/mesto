@@ -2,7 +2,7 @@
   margin: 0;
   margin-top: 22px;
   padding: 0 18px 0 0;
-  width: 294px;
+  max-width: 294px;
   font-style: normal;
   font-weight: 500;
   font-size: 42px;
@@ -16,8 +16,10 @@
   .profile__title {
     margin: 0 auto;
     padding: 0;
+    padding-left: 28px;
     font-size: 27px;
     line-height: 33px;
     max-width: 189px;
+    text-align: center;
   }
 }
