@@ -32,74 +32,7 @@
         <button type="button" class="profile__add-button"></button>
       </section>
       <section class="elements">
-        <ul class="elements__list">
-          <li class="elements__element">
-            <img
-              class="elements__masc-group"
-              src="./images/axp-photography-BILdD7_E270-unsplash.jpg"
-              alt="Фото Медресе Шердор. Самарканд."
-            />
-            <div class="elements__description">
-              <h2 class="elements__title">Самарканд</h2>
-              <button type="button" class="elements__group-button"></button>
-            </div>
-          </li>
-          <li class="elements__element">
-            <img
-              class="elements__masc-group"
-              src="./images/francesco-ungaro-wIaARgeF2rE-unsplash.jpg"
-              alt="Фото. Небо. Ночь. Полнолуние."
-            />
-            <div class="elements__description">
-              <h2 class="elements__title">Сербия</h2>
-              <button type="button" class="elements__group-button"></button>
-            </div>
-          </li>
-          <li class="elements__element">
-            <img
-              class="elements__masc-group"
-              src="./images/joel-gada-barenco-FqjQOAvtPM8-unsplash.jpg"
-              alt="Фото Миланский собор."
-            />
-            <div class="elements__description">
-              <h2 class="elements__title">Милан</h2>
-              <button class="elements__group-button"></button>
-            </div>
-          </li>
-          <li class="elements__element">
-            <img
-              class="elements__masc-group"
-              src="./images/gabrielle-maurer-WLNVJ2OkFkY-unsplash.jpg"
-              alt="Фото трёх пальм одиноко стящих в джунглях."
-            />
-            <div class="elements__description">
-              <h2 class="elements__title">Таиланд</h2>
-              <button type="button" class="elements__group-button"></button>
-            </div>
-          </li>
-          <li class="elements__element">
-            <img
-              class="elements__masc-group"
-              src="./images/marek-piwnicki-olk5oaEZXq8-unsplash.jpg"
-              alt="Фото заснеженных гор в Альпах."
-            />
-            <div class="elements__description">
-              <h2 class="elements__title">Альпы</h2>
-              <button class="elements__group-button"></button>
-            </div>
-          </li>
-          <li class="elements__element">
-            <img
-              class="elements__masc-group"
-              src="./images/sagar-kulkarni-pIuWVh-XQUI-unsplash.jpg"
-              alt="Фото водопада в джунглях Индонезии."
-            />
-            <div class="elements__description">
-              <h2 class="elements__title">Индонезия</h2>
-              <button type="button" class="elements__group-button"></button>
-            </div>
-          </li>
-        </ul>
+        <ul class="elements__list"></ul>
       </section>
     </main>
     <div class="popup popup_edit_profile">
@@ -171,24 +104,12 @@
     <footer class="footer">
       <p class="footer__author">© 2020 Mesto Russia</p>
     </footer>
-    <template id="element">
+    <template id="element-template">
       <li class="elements__element">
-        <img
-          src="<%=require('./images/Trash.svg')%>"
-          alt="Корзина"
-          class="elements__element-trashcan"
-        />
-        <img
-          src="<%=require('./images/kirill-pershin3.png')%>"
-          alt="#"
-          class="elements__masc-group"
-        />
+        <img class="elements__masc-group" src="#" alt="#" />
         <div class="elements__description">
           <h2 class="elements__title">#</h2>
-          <div class="elements__element-like-container">
-            <button class="elements__group-button" type="button"></button>
-            <p class="elements__element-like-box">0</p>
-          </div>
+          <button type="button" class="elements__group-button"></button>
         </div>
       </li>
     </template>

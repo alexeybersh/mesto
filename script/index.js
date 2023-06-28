@@ -1,3 +1,4 @@
+// попап для профиля
 let nameInput = document.querySelector(".profile__title");
 let jobInput = document.querySelector(".profile__subtitle");
 
@@ -39,6 +40,7 @@ function popupOpened() {
   popupElement.classList.toggle("popup_opened");
 }
 
+// попап для добавления карточек
 const addButtonImage = document.querySelector(".profile__add-button");
 const closeButtonElementImage = document.querySelector(
   ".popup__close-button_add_image"
@@ -53,6 +55,7 @@ const inputNameImage = document.querySelector(
 );
 const inputLinkImage = document.querySelector(".popup__profile_link_text");
 
+// добавление карточек
 function popupOpenedAdd() {
   popupElementImage.classList.toggle("popup_opened");
 }
@@ -63,4 +66,66 @@ addButtonImage.addEventListener("click", () => {
 
 closeButtonElementImage.addEventListener("click", () => {
   popupOpenedAdd();
+});
+
+function handleAddSubmit(evt) {
+  evt.preventDefault();
+
+  const elementHtml = createElements({
+    name: inputNameImage.value,
+    link: inputLinkImage.value,
+  });
+
+  elementsList.prepend(elementHtml);
+
+  popupOpenedAdd();
+}
+
+formElementImage.addEventListener("submit", handleAddSubmit);
+
+// создание карточек
+const initialeElements = [
+  {
+    name: "Самарканд",
+    link: "./images/axp-photography-BILdD7_E270-unsplash.jpg",
+  },
+  {
+    name: "Челябинская область",
+    link: "./images/sagar-kulkarni-pIuWVh-XQUI-unsplash.jpg",
+  },
+  {
+    name: "Иваново",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
+  },
+  {
+    name: "Камчатка",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
+  },
+  {
+    name: "Холмогорский район",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
+  },
+  {
+    name: "Байкал",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
+  },
+];
+
+const elementTemplate = document.querySelector("#element-template").content;
+const elementsList = document.querySelector(".elements__list");
+
+const createElements = ({ name, link }) => {
+  const copyElement = elementTemplate
+    .querySelector(".elements__element")
+    .cloneNode(true);
+  copyElement.querySelector(".elements__masc-group").src = link;
+  copyElement.querySelector(".elements__masc-group").alt = name;
+  copyElement.querySelector(".elements__title").textContent = name;
+
+  return copyElement;
+};
+
+initialeElements.forEach((item) => {
+  const htmlElement = createElements(item);
+  elementsList.append(htmlElement);
 });
