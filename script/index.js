@@ -1,3 +1,31 @@
+// создание карточек
+const initialeElements = [
+  {
+    name: "Пальмы на пляже",
+    link: "https://w.forfun.com/fetch/4c/4c730760279faf92fd9e0bb260a0a2d9.jpeg",
+  },
+  {
+    name: "Закат на море",
+    link: "https://beautifoto.ru/wp-content/uploads/2019/06/9-11.jpg",
+  },
+  {
+    name: "Иваново",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
+  },
+  {
+    name: "Камчатка",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
+  },
+  {
+    name: "Холмогорский район",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
+  },
+  {
+    name: "Байкал",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
+  },
+];
+
 // попап для профиля
 let nameInput = document.querySelector(".profile__title");
 let jobInput = document.querySelector(".profile__subtitle");
@@ -81,34 +109,6 @@ function handleAddSubmit(evt) {
 }
 
 formElementImage.addEventListener("submit", handleAddSubmit);
-
-// создание карточек
-const initialeElements = [
-  {
-    name: "Самарканд",
-    link: "./images/axp-photography-BILdD7_E270-unsplash.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link: "./images/sagar-kulkarni-pIuWVh-XQUI-unsplash.jpg",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
 
 const elementTemplate = document.querySelector("#element-template").content;
 const elementsList = document.querySelector(".elements__list");
