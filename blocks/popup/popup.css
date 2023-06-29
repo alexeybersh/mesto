@@ -1,7 +1,5 @@
 .popup {
-  visibility: hidden;
-  opacity: 0;
-  transition: visibility 0.5s, opacity 0.5s;
+  display: none;
   margin: 0;
   padding: 0;
   width: 100%;
@@ -17,5 +15,4 @@
   border-radius: 10px;
   border: none;
   background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
 }

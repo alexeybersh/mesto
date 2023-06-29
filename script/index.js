@@ -15,7 +15,7 @@ const inputName = document.querySelector(".popup__profile_input-name_text");
 const inputjob = document.querySelector(".popup__profile_input-job_text");
 
 editButtonElement.addEventListener("click", () => {
-  popupOpened();
+  popupOpened(popupElement);
 
   inputName.value = nameInput.textContent;
   inputjob.value = jobInput.textContent;
@@ -27,17 +27,17 @@ function handleFormSubmit(evt) {
   nameInput.textContent = inputName.value;
   jobInput.textContent = inputjob.value;
 
-  popupOpened();
+  popupOpened(popupElement);
 }
 
 formElement.addEventListener("submit", handleFormSubmit);
 
 closeButtonElement.addEventListener("click", () => {
-  popupOpened();
+  popupOpened(popupElement);
 });
 
-function popupOpened() {
-  popupElement.classList.toggle("popup_opened");
+function popupOpened(popupOponed) {
+  popupOponed.classList.toggle("popup_opened");
 }
 
 // попап для добавления карточек
@@ -56,16 +56,12 @@ const inputNameImage = document.querySelector(
 const inputLinkImage = document.querySelector(".popup__profile_link_text");
 
 // добавление карточек
-function popupOpenedAdd() {
-  popupElementImage.classList.toggle("popup_opened");
-}
-
 addButtonImage.addEventListener("click", () => {
-  popupOpenedAdd();
+  popupOpened(popupElementImage);
 });
 
 closeButtonElementImage.addEventListener("click", () => {
-  popupOpenedAdd();
+  popupOpened(popupElementImage);
 });
 
 function handleAddSubmit(evt) {
@@ -78,7 +74,10 @@ function handleAddSubmit(evt) {
 
   elementsList.prepend(elementHtml);
 
-  popupOpenedAdd();
+  inputNameImage.value = "";
+  inputLinkImage.value = "";
+
+  popupOpened(popupElementImage);
 }
 
 formElementImage.addEventListener("submit", handleAddSubmit);
@@ -113,6 +112,7 @@ const initialeElements = [
 
 const elementTemplate = document.querySelector("#element-template").content;
 const elementsList = document.querySelector(".elements__list");
+const popupImage = document.querySelector(".popup_bigimage");
 
 const createElements = ({ name, link }) => {
   const copyElement = elementTemplate
@@ -122,6 +122,23 @@ const createElements = ({ name, link }) => {
   copyElement.querySelector(".elements__masc-group").alt = name;
   copyElement.querySelector(".elements__title").textContent = name;
 
+  // удаление картинки
+  const deleteElementButton = copyElement.querySelector(".elements__trash");
+
+  deleteElementButton.addEventListener("click", () => {
+    copyElement.remove();
+  });
+
+  // увелечение картинки
+  const bigsizeImage = copyElement.querySelector(".elements__masc-group");
+
+  bigsizeImage.addEventListener("click", () => {
+    document.querySelector(".popup__image").src = link;
+    document.querySelector(".popup__image").alt = name;
+    document.querySelector(".popup__image-title").textContent = name;
+    popupOpened(popupImage);
+  });
+
   return copyElement;
 };
 
@@ -129,3 +146,18 @@ initialeElements.forEach((item) => {
   const htmlElement = createElements(item);
   elementsList.append(htmlElement);
 });
+
+// клик по лайку в карточеке
+document
+  .querySelector(".elements__list")
+  .addEventListener("click", function (evt) {
+    if (evt.target.classList.contains("elements__group-button")) {
+      evt.target.classList.toggle("elements__group-button_active");
+    }
+  });
+
+document
+  .querySelector(".popup__close-button_image_close-button")
+  .addEventListener("click", () => {
+    popupOpened(popupImage);
+  });
