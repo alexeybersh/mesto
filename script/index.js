@@ -136,14 +136,6 @@ initialeElements.forEach((item) => {
   elementsList.append(htmlElement);
 });
 
-// document
-//   .querySelector(".elements__list")
-//   .addEventListener("click", function (evt) {
-//     if (evt.target.classList.contains("elements__group-button")) {
-//       evt.target.classList.toggle("elements__group-button_active");
-//     }
-//   });
-
 // Закрытие картинки
 document
   .querySelector(".popup__close-button_image_close-button")
