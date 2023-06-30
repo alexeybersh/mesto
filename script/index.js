@@ -9,7 +9,7 @@ const closeButtonElement = document.querySelector(
 const saveButtonElement = document.querySelector(
   ".popup__save-button_edit_profile"
 );
-const popupElement = document.querySelector(".popup_type_edit_profile");
+const popupElement = document.querySelector(".popup_type_edit-profile");
 const formElement = document.querySelector(".popup__form_edit_profile");
 const inputName = document.querySelector(".popup__profile_input-name_text");
 const inputjob = document.querySelector(".popup__profile_input-job_text");
