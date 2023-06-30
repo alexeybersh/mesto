@@ -1,5 +1,8 @@
 .popup {
-  display: none;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.5s all;
+  display: flex;
   margin: 0;
   padding: 0;
   width: 100%;
