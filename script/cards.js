@@ -9,7 +9,7 @@ const initialeElements = [
   },
   {
     name: "Качели на пляжу",
-    link: "https://sportishka.com/uploads/posts/2022-11/1667430606_1-sportishka-com-p-plyazh-s-palmami-oboi-1.jpg",
+    link: "https://s1.1zoom.ru/b6343/302/Sea_Tropics_Palms_Beach_Swing_531524_3840x2160.jpg",
   },
   {
     name: "Пляж и море",
