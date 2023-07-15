@@ -1,3 +1,5 @@
+const popup = document.querySelectorAll(".popup");
+
 // для профиля
 const nameInput = document.querySelector(".profile__title");
 const jobInput = document.querySelector(".profile__subtitle");
@@ -10,7 +12,7 @@ const saveButtonElement = document.querySelector(
   ".popup__save-button_edit_profile"
 );
 const popupElement = document.querySelector(".popup_type_edit-profile");
-const formElement = document.querySelector(".popup__form_edit_profile");
+const formElementEditProfile = document.querySelector(".popup__form_edit_profile");
 const inputName = document.querySelector(".popup__profile_input-name_text");
 const inputjob = document.querySelector(".popup__profile_input-job_text");
 
@@ -38,12 +40,42 @@ const popupImegeTitle = document.querySelector(".popup__image-title");
 const elementTemplate = document.querySelector("#element-template").content;
 const elementsList = document.querySelector(".elements__list");
 
+// открытие попапа
 function popupOpened(popupOpened) {
   popupOpened.classList.add("popup_opened");
+  if (popupOpened.querySelector(".popup__set")) {
+  popupOpened.querySelector(".popup__set").classList.add("popup__set_active");
+  }
 }
 
+// закрытие попапа
 function popupClosed(popupClosed) {
   popupClosed.classList.remove("popup_opened");
+  if (popupClosed.querySelector(".popup__set")) {
+    popupClosed.querySelector(".popup__set").classList.remove("popup__set_active");
+    }
+}
+
+// закрытие попапа по overlay
+document.addEventListener( 'click', (evt) => { 
+  const popup = document.querySelector(".popup_opened");
+  console.log(popup)
+  console.log(evt.target)
+  if (popup && popup === evt.target) { 
+    console.log(">>>")
+      popupClosed(popup);
+    };
+}); 
+
+// закрытие по ESC
+document.addEventListener('keydown', popupClosedEsc);
+
+function popupClosedEsc(evt) {
+  if (evt.key === 'Escape') {
+    const popup = document.querySelector(".popup_opened");
+    if (popup)
+    popupClosed(popup);
+  }
 }
 
 // редактирование профиля
@@ -63,7 +95,7 @@ function handleFormSubmit(evt) {
   popupClosed(popupElement);
 }
 
-formElement.addEventListener("submit", handleFormSubmit);
+formElementEditProfile.addEventListener("submit", handleFormSubmit);
 
 closeButtonElement.addEventListener("click", () => {
   popupClosed(popupElement);
