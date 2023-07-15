@@ -1,5 +1,3 @@
-const popup = document.querySelectorAll(".popup");
-
 // для профиля
 const nameInput = document.querySelector(".profile__title");
 const jobInput = document.querySelector(".profile__subtitle");
@@ -13,8 +11,8 @@ const saveButtonElement = document.querySelector(
 );
 const popupElement = document.querySelector(".popup_type_edit-profile");
 const formElementEditProfile = document.querySelector(".popup__form_edit_profile");
-const inputName = document.querySelector(".popup__profile_input-name_text");
-const inputjob = document.querySelector(".popup__profile_input-job_text");
+const inputName = document.querySelector(".popup__input_input-name_text");
+const inputjob = document.querySelector(".popup__input_input-job_text");
 
 // пдля добавления карточек
 const addButtonImage = document.querySelector(".profile__add-button");
@@ -27,9 +25,9 @@ const saveButtonElementImage = document.querySelector(
 const popupElementImage = document.querySelector(".popup_type_add-image");
 const formElementImage = document.querySelector(".popup__form_add_image");
 const inputNameImage = document.querySelector(
-  ".popup__profile_input-name-image_text"
+  ".popup__input_input-name-image_text"
 );
-const inputLinkImage = document.querySelector(".popup__profile_link_text");
+const inputLinkImage = document.querySelector(".popup__input_link_text");
 
 // для увелечения карточек
 const openPopupImage = document.querySelector(".popup_type_big-image");
@@ -62,7 +60,6 @@ document.addEventListener( 'click', (evt) => {
   console.log(popup)
   console.log(evt.target)
   if (popup && popup === evt.target) { 
-    console.log(">>>")
       popupClosed(popup);
     };
 }); 
