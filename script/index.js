@@ -119,9 +119,9 @@ buttonAddPopupImage.addEventListener("click", () => {
   errorMessageRevove()
 
   buttonDisableSubmit(saveButtonElementImage, VALIDATION_CONFIG)
-
+    
   formPopupImage.reset();
- 
+  
   popupOpened(popupAddImage);
 });
 
@@ -138,8 +138,6 @@ function handleAddSubmitAddImage(evt) {
   });
 
   elementsList.prepend(elementHtml);
-
-  formPopupImage.reset();
 
   popupClosed(popupAddImage);
 }
