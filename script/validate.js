@@ -1,23 +1,23 @@
 const VALIDATION_CONFIG = {
     formSelector: '.popup__form',
     inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__save-button',
-    inactiveButtonClass: 'popup__save-button_inactive',
-    inputErrorClass: 'popup__input_type_error',
+    buttonSubmitSelector: '.popup__save-button',
+    buttonInactiveClass: 'popup__save-button_inactive',
+    errorInputClass: 'popup__input_type_error',
     errorClass: 'popup__input-error_active',
     setPopup: '.popup__set'
 };
 
 const showInputError = (formElement, inputElement, errorMessage, config) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.add(config.inputErrorClass);
+    inputElement.classList.add(config.errorInputClass);
     errorElement.classList.add(config.errorClass);
     errorElement.textContent = errorMessage;
   };
   
   const hideInputError = (formElement, inputElement, config) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.remove(config.inputErrorClass);
+    inputElement.classList.remove(config.errorInputClass);
     errorElement.classList.remove(config.errorClass);
     errorElement.textContent = '';
   };
@@ -32,7 +32,7 @@ const showInputError = (formElement, inputElement, errorMessage, config) => {
   
   const setEventListeners = (formElement, config) => {
     const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
-    const buttonElement = formElement.querySelector(config.submitButtonSelector);
+    const buttonElement = formElement.querySelector(config.buttonSubmitSelector);
 
     toggleButtonState(inputList, buttonElement, config);
     
@@ -79,12 +79,12 @@ const showInputError = (formElement, inputElement, errorMessage, config) => {
   }
 
   function buttonDisableSubmit(buttonElement, config) { 
-    buttonElement.classList.add(config.inactiveButtonClass); 
+    buttonElement.classList.add(config.buttonInactiveClass); 
     buttonElement.disabled = true;
 
   }
 
   function buttonEnableSubmit(buttonElement, config) {
-    buttonElement.classList.remove(config.inactiveButtonClass);
+    buttonElement.classList.remove(config.buttonInactiveClass);
     buttonElement.disabled = false;
 } 
