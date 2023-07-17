@@ -100,9 +100,10 @@ buttonClosePopupProfile.addEventListener("click", () => {
   popupClosed(popupProfile);
 });
 
+
+// очистка полей 
 const errorMessageRevove = () => {
   inputElements = Array.from(document.querySelectorAll('.popup__input'));
-
   inputElements.forEach((popupInput) => {
   popupInput.classList.remove('popup__input_type_error');
 
