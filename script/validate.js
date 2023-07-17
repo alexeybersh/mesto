@@ -1,11 +1,11 @@
 const VALIDATION_CONFIG = {
     formSelector: '.popup__form',
     inputSelector: '.popup__input',
+    popupSet: '.popup__set',
     buttonSubmitSelector: '.popup__save-button',
     buttonInactiveClass: 'popup__save-button_inactive',
     errorInputClass: 'popup__input_type_error',
-    errorClass: 'popup__input-error_active',
-    setPopup: '.popup__set'
+    errorClass: 'popup__input-error_active'
 };
 
 const showInputError = (formElement, inputElement, errorMessage, config) => {
@@ -52,7 +52,7 @@ const showInputError = (formElement, inputElement, errorMessage, config) => {
         evt.preventDefault();
       });
   
-      const fieldsetList = Array.from(formElement.querySelectorAll(config.setPopup));
+      const fieldsetList = Array.from(formElement.querySelectorAll(config.popupSet));
 
       fieldsetList.forEach((fieldSet) => {
         setEventListeners(fieldSet, config);
