@@ -88,3 +88,5 @@ const showInputError = (formElement, inputElement, errorMessage, config) => {
     buttonElement.classList.remove(config.buttonInactiveClass);
     buttonElement.disabled = false;
 } 
+
+export default VALIDATION_CONFIG 

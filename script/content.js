@@ -13,7 +13,7 @@ const initialeElements = [
     },
     {
       name: "Пляж и море",
-      link: "http://images.ua.prom.st/2575163499_w640_h640_fotooboi-3d-more.jpg",
+      link: "https://img.freepik.com/free-photo/beautiful_1203-2633.jpg?w=1800&t=st=1690886999~exp=1690887599~hmac=d65d81b4bb83bf6492e1ccb8cc5cfb30c9e058b16cb0ca2adc1badfb2e573733",
     },
     {
       name: "Мальдивы",
@@ -24,3 +24,5 @@ const initialeElements = [
       link: "https://wp-s.ru/wallpapers/2/91/379101226417646/fotografiya-palmy-plyazha-okeana-i-solnca.jpg",
     },
   ];
+
+  export default initialeElements;
