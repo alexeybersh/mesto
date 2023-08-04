@@ -11,9 +11,7 @@ const buttonOpenPopupProfile = document.querySelector(".profile__edit-button");
 const buttonClosePopupProfile = document.querySelector(
   ".popup__close-button_edit_profile"
 );
-// const saveButtonElement = document.querySelector(
-//   ".popup__save-button_edit_profile"
-// );
+
 const popupProfile = document.querySelector(".popup_type_edit-profile");
 const formPopupProfile = document.querySelector(".popup__form_edit_profile");
 const inputName = document.querySelector(".popup__input_input-name_text");
