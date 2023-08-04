@@ -1,6 +1,7 @@
 import initialeElements from "./content.js";
 import Card from "./Card.js";
 import VALIDATION_CONFIG from "./validate.js"
+import FormValidator from "./FormValidator.js"
 
 // для профиля
 const nameInput = document.querySelector(".profile__title");
@@ -44,8 +45,18 @@ const elementsList = document.querySelector(".elements__list");
 function popupOpened(popupOpened) {
   popupOpened.classList.add("popup_opened");
   if (popupOpened.querySelector(".popup__set")) {
-  popupOpened.querySelector(".popup__set").classList.add("popup__set_active");
+  popupOpened.querySelector(".popup__set").classList.add("popup__set_active");  
   }
+
+  // валидирование формы
+  const form = new FormValidator(VALIDATION_CONFIG, popupOpened.querySelector(".popup__form"));
+
+  form.enableValidation();
+
+  const errorInput = popupOpened.querySelectorAll('.popup__input');
+  errorInput.forEach((errorItem) =>{ 
+    form.hideInputError(popupOpened.querySelector(".popup__form"), errorItem)
+  });
 }
 
 // закрытие попапа
@@ -55,6 +66,13 @@ function popupClosed(popupClosed) {
     popupClosed.querySelector(".popup__set").classList.remove("popup__set_active");
     }
 }
+
+// закрытие картинки
+document
+  .querySelector(".popup__close-button_image_close-button")
+  .addEventListener("click", () => {
+    popupClosed(buttonZoomPopupImage);
+  });
 
 // закрытие попапа по overlay
 function popupCloseOverlay(evt) { 
@@ -81,7 +99,6 @@ const popupCloseESC = document.addEventListener('keydown', escClosePopup)
 
 // редактирование профиля
 buttonOpenPopupProfile.addEventListener("click", () => {
-  // errorMessageRevove();
 
   popupOpened(popupProfile);
 
@@ -106,10 +123,7 @@ buttonClosePopupProfile.addEventListener("click", () => {
 
 // добавление карточек
 buttonAddPopupImage.addEventListener("click", () => {
-  // errorMessageRevove()
 
-  // buttonDisableSubmit(saveButtonElementImage, VALIDATION_CONFIG)
-    
   formPopupImage.reset();
   
   popupOpened(popupAddImage);
@@ -122,6 +136,7 @@ buttonClosePopupImage.addEventListener("click", () => {
 // загрузка предустановенных карточек
 initialeElements.forEach((data) => {
   const card = new Card(data, newTemplate);  
+  
   elementsList.append(card.getView());  
 });
 
@@ -138,10 +153,3 @@ function handleAddSubmitAddImage(evt) {
 }
 
 formPopupImage.addEventListener("submit", handleAddSubmitAddImage);
-
-// закрытие картинки
-document
-  .querySelector(".popup__close-button_image_close-button")
-  .addEventListener("click", () => {
-    popupClosed(buttonZoomPopupImage);
-  });
