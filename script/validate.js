@@ -1,4 +1,4 @@
-const VALIDATION_CONFIG = {
+const validationConfig = {
     formSelector: '.popup__form',
     inputSelector: '.popup__input',
     popupSet: '.popup__set',
@@ -8,4 +8,4 @@ const VALIDATION_CONFIG = {
     errorClass: 'popup__input-error_active'
 };
 
-export default VALIDATION_CONFIG 
+export default validationConfig 

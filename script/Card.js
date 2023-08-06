@@ -1,3 +1,5 @@
+import {buttonZoomPopupImage, popupImage, popupImageTitle, popupOpened} from "./index.js"
+
 class Card {
     constructor(data,newTemplate) {
         this._name = data.name;
@@ -25,19 +27,12 @@ class Card {
         buttonSetLike.classList.toggle("elements__group-button_active");
     }
 
-    _popupFill() {
-        const popupImage = document.querySelector(".popup__image");
-        const popupImageTitle = document.querySelector(".popup__image-title");
+    _popupOponed() {
         popupImage.src = this._link;
         popupImage.alt = this._name;
         popupImageTitle.textContent = this._name;     
             
-        this._popupOpen();
-    }
-
-    _popupOpen() {
-        const buttonZoomPopupImage = document.querySelector(".popup_type_big-image");
-        buttonZoomPopupImage.classList.add("popup_opened");
+        popupOpened(buttonZoomPopupImage);
     }
 
     _setListeners() {
@@ -51,7 +46,7 @@ class Card {
 
         const originalImage = this._newCard.querySelector(".elements__masc-group"); 
 
-        originalImage.addEventListener("click", () => this._popupFill())  
+        originalImage.addEventListener("click", () => this._popupOponed())  
     }
     
     getView() {
