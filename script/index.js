@@ -53,9 +53,6 @@ formValidationAddImage.enableValidation();
 export function popupOpened(popupOpened) {
   popupOpened.classList.add("popup_opened");
   document.addEventListener('keydown', escClosePopup)
-
-  formValidationEditProfile.resetErrorForm();
-  formValidationAddImage.resetErrorForm();
 };
 
 // закрытие попапа
@@ -94,6 +91,8 @@ function escClosePopup(evt) {
 
 // редактирование профиля
 buttonOpenPopupProfile.addEventListener("click", () => {
+  
+  formValidationEditProfile.resetErrorForm();
 
   popupOpened(popupProfile);
   popupFillEditProfile();  
@@ -121,9 +120,8 @@ buttonClosePopupProfile.addEventListener("click", () => {
 
 // добавление карточек
 buttonAddPopupImage.addEventListener("click", () => {
-
-  formPopupImage.reset();
-  
+  formValidationAddImage.resetErrorForm();
+  formPopupImage.reset();  
   popupOpened(popupAddImage);
 });
 
@@ -131,22 +129,27 @@ buttonClosePopupImage.addEventListener("click", () => {
   popupClosed(popupAddImage);
 });
 
+function createCard(data) {
+  const card = new Card(data, newTemplate);
+  return card.getView();
+}
+
+const veiwCard = (data) => {
+  const card = createCard(data)
+  elementsList.prepend(card);
+}
+
 // загрузка предустановенных карточек
 initialeElements.forEach((data) => {
-  const card = new Card(data, newTemplate);  
-  
-  elementsList.append(card.getView());  
+  veiwCard(data);
 });
 
 // добавление новой карточки
 function handleAddSubmitAddImage(evt) {
   evt.preventDefault();
-  
+
   const data =  {name: inputNameImage.value, link: inputLinkImage.value};
-  const newCard = new Card(data, newTemplate);
-
-  elementsList.prepend(newCard.getView());
-
+  veiwCard(data);
   popupClosed(popupAddImage);
 }
 
