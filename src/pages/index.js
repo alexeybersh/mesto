@@ -15,6 +15,7 @@ import { initialeElements,
   inputLinkImage
  } from "../utils/contents.js";
 
+import '../pages/index.css'
 import Card from "../script/Card.js";
 import FormValidator from "../script/FormValidator.js"
 import Section from '../script/Section.js';
