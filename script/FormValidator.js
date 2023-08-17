@@ -80,7 +80,7 @@ class FormValidator {
  }
 
 
-resetErrorForm() {
+resetErrorForm() { 
   this._buttonDisableSubmit(this._buttonSubmitSelector)
 
   this._inputList.forEach((inputElement) => {

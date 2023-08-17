@@ -1,14 +1,13 @@
-import {buttonZoomPopupImage, popupImage, popupImageTitle, popupOpened} from "./index.js"
-
 class Card {
-    constructor(data,newTemplate) {
+    constructor(data, newTemplate, handleCardClick) {
         this._name = data.name;
         this._link = data.link;
         this._newTemplate = newTemplate;
+        this._handleCardClick = handleCardClick;
     }
 
     _getTemplate() {
-        return this._newTemplate.content.querySelector(".elements__element").cloneNode(true);
+        return document.querySelector(this._newTemplate).content.querySelector(".elements__element").cloneNode(true);
     }
     
     _setData() {
@@ -20,19 +19,11 @@ class Card {
 
     _handelClikDelete() {
         this._newCard.remove();
-
+        this._newCard = null;
     }
   
     _handelClilLike(buttonSetLike) {
         buttonSetLike.classList.toggle("elements__group-button_active");
-    }
-
-    _popupOponed() {
-        popupImage.src = this._link;
-        popupImage.alt = this._name;
-        popupImageTitle.textContent = this._name;     
-            
-        popupOpened(buttonZoomPopupImage);
     }
 
     _setListeners() {
@@ -44,12 +35,14 @@ class Card {
         
         buttonSetLike.addEventListener("click", () => this._handelClilLike(buttonSetLike)) 
 
-        const originalImage = this._newCard.querySelector(".elements__masc-group"); 
-
-        originalImage.addEventListener("click", () => this._popupOponed())  
+        const clikImage =  this._newCard.querySelector(".elements__masc-group")
+        
+        clikImage.addEventListener("click", () =>  {
+            this._handleCardClick(this._name, this._link)
+        })
     }
     
-    getView() {
+    generateCard() {
         this._newCard = this._getTemplate();
         this._setData();
         this._setListeners();
