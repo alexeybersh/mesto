@@ -12,16 +12,20 @@ import { initialeElements,
   popupAddImage,
   formPopupImage,
   inputNameImage,
-  inputLinkImage
+  inputLinkImage,
+  popupForm,
+  popupInput,
+  inputImage,
+  inputImageTitle
  } from "../utils/contents.js";
 
 import '../pages/index.css'
-import Card from "../script/Card.js";
-import FormValidator from "../script/FormValidator.js"
-import Section from '../script/Section.js';
-import PopupWithForm from "../script/PopupWithForm.js";
-import PopupWithImage from "../script/PopupWithImage.js"
-import UserInfo from "../script/UserInfo.js"
+import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js"
+import Section from '../components/Section.js';
+import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithImage from "../components/PopupWithImage.js"
+import UserInfo from "../components/UserInfo.js"
 
 // валидирование формы
 const formValidationEditProfile= new FormValidator(validationConfig, formPopupProfile);
@@ -30,24 +34,6 @@ formValidationEditProfile.enableValidation();
 const formValidationAddImage= new FormValidator(validationConfig, formPopupImage);
 formValidationAddImage.enableValidation();
 
-// закрытие попапа по overlay -->>
-function popupClosed(popupClosed) {
-  popupClosed.classList.remove("popup_opened");
-}
-
-
-function popupCloseOverlay(evt) { 
-  if (evt.target.classList.contains('popup_opened')) { 
-      popupClosed(evt.target);
-    };
- };
-
- const arryaPopup = Array.from(document.querySelectorAll(".popup"))
-  arryaPopup.forEach((item) => {
-    item.addEventListener('click', (evt) => {popupCloseOverlay(evt)});
-  })
-// <<--
-
 // данные пользователя при открытии попап
 const userInfo = new UserInfo(
   selectorNameInput, 
@@ -55,11 +41,11 @@ const userInfo = new UserInfo(
 );
 
 // Экземпляры для попапов
-const popupProfile = new PopupWithForm(popupEditProfile, handleFormSubmitEditProfile);
+const popupProfile = new PopupWithForm(popupEditProfile, handleFormSubmitEditProfile, popupForm, popupInput);
 
-const popupImage = new PopupWithForm(popupAddImage, handleSubmitAddImage);
+const popupImage = new PopupWithForm(popupAddImage, handleSubmitAddImage, popupForm, popupInput);
 
-const popupViewImage = new PopupWithImage(buttonZoomPopupImage);
+const popupViewImage = new PopupWithImage(buttonZoomPopupImage, inputImage, inputImageTitle);
 
 // Открытие попапов
 function popupOpenProfile() {
@@ -70,7 +56,6 @@ function popupOpenProfile() {
 
 function popupOpenAddImige() {
   formValidationAddImage.resetErrorForm();
-  formPopupImage.reset();  
   popupImage.open();
 }
 
@@ -84,30 +69,39 @@ function handleFormSubmitEditProfile(inputValues) {
   popupProfile.close();
 }
 
+function createCard(data) {
+  const card = new Card(data, newTemplate, handleCardClick);
+
+  return card.generateCard();
+}
+
+function veiwCard(data) {
+  const veiwCard = new Section({
+      data: [data],
+      renderer: (item) => {
+        const cardElement= createCard(item)
+    
+        veiwCard.addItem(cardElement);
+      }
+    }, elementsList)
+
+    veiwCard.renderItems() 
+};
+
 function handleSubmitAddImage() {
   
-  function createCard(data) {
-    const card = new Card(data, newTemplate,handleCardClick);
- 
-    return card.generateCard();
-  }
-  
-  const veiwCard = (data) => {
-    const card = createCard(data)
-    document.querySelector(elementsList).prepend(card);
-  }
-
   const data =  {name: inputNameImage.value, link: inputLinkImage.value};
   
-  veiwCard(data);
+  veiwCard(data)
+
   popupImage.close();
 }
 
 const defaultCard = new Section({
   data: initialeElements,
   renderer: (item) => {
-    const card = new Card(item, newTemplate, handleCardClick);
-    const cardElement = card.generateCard();
+    const cardElement= createCard(item)
+
     defaultCard.addItem(cardElement);
   }
 }, elementsList);
