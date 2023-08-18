@@ -71,42 +71,24 @@ function handleFormSubmitEditProfile(inputValues) {
 
 function createCard(data) {
   const card = new Card(data, newTemplate, handleCardClick);
-
   return card.generateCard();
 }
 
-function veiwCard(data) {
-  const veiwCard = new Section({
-      data: [data],
-      renderer: (item) => {
-        const cardElement= createCard(item)
-    
-        veiwCard.addItem(cardElement);
-      }
-    }, elementsList)
-
-    veiwCard.renderItems() 
-};
-
-function handleSubmitAddImage() {
-  
-  const data =  {name: inputNameImage.value, link: inputLinkImage.value};
-  
-  veiwCard(data)
-
+function handleSubmitAddImage(inputValues) {
+  const cardElement= createCard(inputValues)
+  cardSelection.addItem(cardElement);
   popupImage.close();
 }
 
-const defaultCard = new Section({
-  data: initialeElements,
+const cardSelection = new Section({
   renderer: (item) => {
     const cardElement= createCard(item)
 
-    defaultCard.addItem(cardElement);
+    cardSelection.addItem(cardElement);
   }
 }, elementsList);
 
-defaultCard.renderItems()   
+cardSelection.renderItems(initialeElements)   
 
 // слушатели 
 buttonOpenPopupProfile.addEventListener("click", popupOpenProfile);
