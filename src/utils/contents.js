@@ -41,6 +41,8 @@ export const newTemplate = "#element-template"
 export const elementsList = ".elements__list";
 // попап редактирование профиля
 export const popupEditProfile = ".popup_type_edit-profile";
+// попап для удаления картинки
+export const popupDeleteImage = ".popup_type_delete-image";
 // данные пользователя
 export const selectorNameInput = ".profile__title";
 export const selectorjobInput = ".profile__subtitle";

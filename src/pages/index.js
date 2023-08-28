@@ -94,3 +94,14 @@ buttonAddPopupImage.addEventListener("click", popupOpenAddImige);
 popupProfile.setEventListeners();
 popupViewImage.setEventListeners();
 popupImage.setEventListeners();
+
+
+fetch('https://nomoreparties.co/v1/cohort-74/users/me', {
+  headers: {
+    authorization: '2d8f0eb6-386b-4584-9f34-de03cb37fac0'
+  }
+})
+  .then(res => res.json())
+  .then((result) => {
+    console.log(result);
+  }); 

@@ -137,8 +137,23 @@
         <h2 class="popup__image-title"></h2>
       </div>
     </div>
+    <div class="popup popup_type_delete-image">
+      <div class="popup__conteiner-delete">
+        <button
+          type="button"
+          class="popup__close-button"
+        ></button>
+        <h2 class="popup__title popup_padding">Вы уверены?</h2>
+        <button
+                type="submit"
+                class="popup__save-button popup_margin_zero"
+              >
+                Да
+              </button>
+      </div>
+    </div>
     <footer class="footer">
-      <p class="footer__author">© 2020 Mesto Russia</p>
+      <p class="footer__author">© 2023 Mesto Russia</p>
     </footer>
     <template id="element-template">
       <li class="elements__element">
@@ -146,7 +161,10 @@
         <img class="elements__masc-group" src="#" alt="#" />
         <div class="elements__description">
           <h2 class="elements__title">#</h2>
-          <button type="button" class="elements__group-button"></button>
+          <div class="elements__group-like">
+            <button type="button" class="elements__group-button"></button>
+            <p class="elements__count-like">0</p>
+          </div>
         </div>
       </li>
     </template>
