@@ -1,4 +1,4 @@
-import { initialeElements, 
+import { 
   validationConfig, 
   newTemplate, 
   elementsList,
@@ -7,23 +7,83 @@ import { initialeElements,
   selectorjobInput,
   buttonOpenPopupProfile,
   buttonZoomPopupImage,
-  formPopupProfile,
   buttonAddPopupImage,
+  buttonOpenPopupAvatar,
+  buttonSubmitPopupProfile,
+  buttonSubmitPopupImage,
+  buttonSubmitPopupAvatar,
+  buttonConrirmDeletePopupImage,
   popupAddImage,
   formPopupImage,
+  formPopupAvatar,
+  formPopupProfile,
   popupForm,
   popupInput,
   inputImage,
-  inputImageTitle
+  inputImageTitle,
+  apiUrl,
+  apiToken,
+  avatarImage,
+  avatarName,
+  avatarJob,
+  popupDeleteImage,
+  popupChangeAvatar,
+  countLike,
+  selectorButtonLike
  } from "../utils/contents.js";
 
 import '../pages/index.css'
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js"
 import Section from '../components/Section.js';
+import PopupConfirmDelete from "../components/PopupConfirmDelete.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js"
 import UserInfo from "../components/UserInfo.js"
+import Api from "../components/Api.js"
+
+const apiConfig = {
+  url: apiUrl,
+  headers: {
+    "Content-Type": "application/json",
+    "authorization": apiToken
+  }}
+
+const api = new Api(apiConfig)
+
+let userId; 
+
+api.getUserInfo()
+  .then((data) => {
+    userId = data._id
+    avatarImage.src = data.avatar;
+    avatarImage.alt = data.name;
+    avatarName.textContent = data.name;
+    avatarJob.textContent = data.about;
+  })
+  .catch((err) => {console.log(err)})
+
+api.getAllCards()
+ .then((data) => cardSelection.renderItems(data))  
+ .catch((err) => console.log(err))
+
+ function setLike(card, domCard){
+  api.isLike(card.id)
+  .then((data) => {
+    domCard.querySelector(countLike).textContent = (data.likes).length
+  })
+
+  .catch((err) => console.log(err))
+ }
+
+ function unsetLike(card, domCard){
+  api.isLikeDelete(card.id)
+  .then((data) => {
+    domCard.querySelector(countLike).textContent = (data.likes).length
+  })
+
+  .catch((err) => console.log(err))
+ }
 
 // валидирование формы
 const formValidationEditProfile= new FormValidator(validationConfig, formPopupProfile);
@@ -31,6 +91,9 @@ formValidationEditProfile.enableValidation();
 
 const formValidationAddImage= new FormValidator(validationConfig, formPopupImage);
 formValidationAddImage.enableValidation();
+
+const formValidationAvatar = new FormValidator(validationConfig, formPopupAvatar);
+formValidationAvatar.enableValidation();
 
 // данные пользователя при открытии попап
 const userInfo = new UserInfo(
@@ -44,6 +107,10 @@ const popupProfile = new PopupWithForm(popupEditProfile, handleFormSubmitEditPro
 const popupImage = new PopupWithForm(popupAddImage, handleSubmitAddImage, popupForm, popupInput);
 
 const popupViewImage = new PopupWithImage(buttonZoomPopupImage, inputImage, inputImageTitle);
+
+const popupDelete = new PopupConfirmDelete(popupDeleteImage, popupForm, handleCardDelete);
+
+const popupAvatar = new PopupWithForm(popupChangeAvatar, handleAvatarChange, popupForm, popupInput);
 
 // Открытие попапов
 function popupOpenProfile() {
@@ -61,21 +128,75 @@ function handleCardClick(name, link) {
   popupViewImage.open(name, link);
 }
 
-// Закрытие попапа 
-function handleFormSubmitEditProfile(inputValues) {
-  userInfo.setUserInfo(inputValues)
-  popupProfile.close();
+function popupOpenDelete(evt) {
+  popupDelete.open(evt);
 }
 
-function createCard(data) {
-  const card = new Card(data, newTemplate, handleCardClick);
-  return card.generateCard();
+function popupOpenAvatar(){
+  formValidationAvatar.resetErrorForm();
+  popupAvatar.open()
+}
+
+// Закрытие попапа 
+function handleFormSubmitEditProfile(inputValues) {
+  buttonSubmitPopupProfile.textContent = "Сохранение...";
+  api.setUserInfo(inputValues)
+  .then((data) => {
+    userInfo.setUserInfo(data);
+    popupProfile.close();
+  })  
+
+  .catch((err) => {console.log(err)})
+  
+  .finally(() => {
+    buttonSubmitPopupProfile.textContent = "Сохранить";
+  })  
 }
 
 function handleSubmitAddImage(inputValues) {
-  const cardElement= createCard(inputValues)
-  cardSelection.addItem(cardElement);
-  popupImage.close();
+  buttonSubmitPopupImage.textContent = "Сохранение...";
+  api.createCard(inputValues).then((data) => {
+    cardSelection.renderItems([data]);
+    popupImage.close();
+  }) 
+  
+  .catch((err) => {console.log(err)})
+
+  .finally(() => {
+    buttonSubmitPopupImage.textContent = "Сохранить";
+  })  
+}
+
+function handleCardDelete (card) {
+  buttonConrirmDeletePopupImage.textContent = "Удаление...";
+  api.deleteCard(card.id)
+  .then(() => {
+    card.deleteCard();
+    popupDelete.close();
+  })
+  .catch((err) => {console.log(err)})
+
+  .finally(() => {
+    buttonConrirmDeletePopupImage.textContent = "Да";
+  }) 
+}
+
+function handleAvatarChange(inputValues){
+  buttonSubmitPopupAvatar.textContent = "Сохранение...";
+  api.setAvaatar(inputValues).then((data) => {
+    avatarImage.src = data.avatar;
+    popupAvatar.close();
+  })
+  .catch((err) => {console.log(err)})
+
+  .finally(() => {
+    buttonSubmitPopupAvatar.textContent = "Сохранить";
+  }) 
+}
+
+function createCard(data) {
+  const card = new Card(data, newTemplate, handleCardClick, popupOpenDelete, userId, setLike, unsetLike, selectorButtonLike);
+  return card.generateCard();
 }
 
 const cardSelection = new Section({
@@ -86,22 +207,12 @@ const cardSelection = new Section({
   }
 }, elementsList);
 
-cardSelection.renderItems(initialeElements)   
-
 // слушатели 
 buttonOpenPopupProfile.addEventListener("click", popupOpenProfile);
 buttonAddPopupImage.addEventListener("click", popupOpenAddImige);
+buttonOpenPopupAvatar.addEventListener("click", popupOpenAvatar);
 popupProfile.setEventListeners();
 popupViewImage.setEventListeners();
 popupImage.setEventListeners();
-
-
-fetch('https://nomoreparties.co/v1/cohort-74/users/me', {
-  headers: {
-    authorization: '2d8f0eb6-386b-4584-9f34-de03cb37fac0'
-  }
-})
-  .then(res => res.json())
-  .then((result) => {
-    console.log(result);
-  }); 
+popupDelete.setEventListeners();
+popupAvatar.setEventListeners();
