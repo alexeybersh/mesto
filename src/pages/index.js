@@ -149,6 +149,7 @@ function handleFormSubmitEditProfile(inputValues) {
   .catch((err) => {console.log(err)})
   
   .finally(() => {
+    popupProfile.close();
     buttonSubmitPopupProfile.textContent = "Сохранить";
   })  
 }
@@ -163,6 +164,7 @@ function handleSubmitAddImage(inputValues) {
   .catch((err) => {console.log(err)})
 
   .finally(() => {
+    popupImage.close();
     buttonSubmitPopupImage.textContent = "Сохранить";
   })  
 }
@@ -177,6 +179,7 @@ function handleCardDelete (card) {
   .catch((err) => {console.log(err)})
 
   .finally(() => {
+    popupDelete.close();
     buttonConrirmDeletePopupImage.textContent = "Да";
   }) 
 }
@@ -190,6 +193,7 @@ function handleAvatarChange(inputValues){
   .catch((err) => {console.log(err)})
 
   .finally(() => {
+    popupAvatar.close();
     buttonSubmitPopupAvatar.textContent = "Сохранить";
   }) 
 }
