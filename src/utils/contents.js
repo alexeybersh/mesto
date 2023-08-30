@@ -37,7 +37,7 @@ export const buttonOpenPopupProfile = document.querySelector(".profile__edit-but
 //кнопка открытия попапа для добавления карточек  
 export const buttonAddPopupImage = document.querySelector(".profile__add-button");
 // кнопка открытия попапа для изменения картинки аватара
-export const buttonOpenPopupAvatar = document.querySelector(".profile__avater-button");
+export const buttonOpenPopupAvatar = document.querySelector(".profile__avatar-button");
 
 export const popupForm = ".popup__form";
 // импуты попапов
