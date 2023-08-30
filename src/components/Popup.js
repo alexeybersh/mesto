@@ -28,8 +28,6 @@ export default class Popup {
     });
 
     this._popup.addEventListener('mousedown', (evt) => {
-      console.log(evt.target);
-      console.log(this._popup);
       if(evt.target ===  this._popup) {
         this.close();
       }

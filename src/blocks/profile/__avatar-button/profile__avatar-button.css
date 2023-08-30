@@ -5,9 +5,8 @@
   background-color: black;
 }
 
-
 .profile__avatar-button::before {
-  content: "";  
+  content: "";
   position: absolute;
   width: 120px;
   height: 120px;
