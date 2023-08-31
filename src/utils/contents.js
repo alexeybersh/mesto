@@ -61,12 +61,6 @@ export const formPopupImage = document.querySelector(".popup__form_add_image");
 
 export const formPopupAvatar = document.querySelector(".popup__form_avatar");
 
-// кнопка для сохранения профиля
-export const buttonSubmitPopupProfile = document.querySelector(".popup__save-button_edit_profile");
-// кнопка для сохранения картинки
-export const buttonSubmitPopupImage = document.querySelector(".popup__save-button_add_image");
-// кнопка для сохранения аватара
-export const buttonSubmitPopupAvatar = document.querySelector(".popup__save-button_avatar");
 // кнопка для удаления картинки
 export const buttonConrirmDeletePopupImage = document.querySelector(".popup__save-button_delete_image");
 
