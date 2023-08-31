@@ -1,8 +1,10 @@
 import { 
   validationConfig, 
+  apiConfig,  
   newTemplate, 
   elementsList,
   popupEditProfile,
+  selectorAvatar,
   selectorNameInput,
   selectorjobInput,
   buttonOpenPopupProfile,
@@ -21,15 +23,9 @@ import {
   popupInput,
   inputImage,
   inputImageTitle,
-  apiUrl,
-  apiToken,
   avatarImage,
-  avatarName,
-  avatarJob,
   popupDeleteImage,
-  popupChangeAvatar,
-  countLike,
-  selectorButtonLike
+  popupChangeAvatar
  } from "../utils/contents.js";
 
 import '../pages/index.css'
@@ -42,48 +38,18 @@ import PopupWithImage from "../components/PopupWithImage.js"
 import UserInfo from "../components/UserInfo.js"
 import Api from "../components/Api.js"
 
-const apiConfig = {
-  url: apiUrl,
-  headers: {
-    "Content-Type": "application/json",
-    "authorization": apiToken
-  }}
-
 const api = new Api(apiConfig)
 
 let userId; 
 
-api.getUserInfo()
-  .then((data) => {
-    userId = data._id
-    avatarImage.src = data.avatar;
-    avatarImage.alt = data.name;
-    avatarName.textContent = data.name;
-    avatarJob.textContent = data.about;
-  })
-  .catch((err) => {console.log(err)})
+Promise.all([api.getUserInfo(), api.getAllCards()])
+ .then(([userData, allCards]) => {
+    userId = userData._id
+    userInfo.setUserInfo(userData);
+    cardSelection.renderItems(allCards); 
+ })
 
-api.getAllCards()
- .then((data) => cardSelection.renderItems(data))  
- .catch((err) => console.log(err))
-
- function setLike(card, domCard){
-  api.isLike(card.id)
-  .then((data) => {
-    domCard.querySelector(countLike).textContent = (data.likes).length
-  })
-
-  .catch((err) => console.log(err))
- }
-
- function unsetLike(card, domCard){
-  api.isLikeDelete(card.id)
-  .then((data) => {
-    domCard.querySelector(countLike).textContent = (data.likes).length
-  })
-
-  .catch((err) => console.log(err))
- }
+ .catch((err) => {console.log(err)})
 
 // валидирование формы
 const formValidationEditProfile= new FormValidator(validationConfig, formPopupProfile);
@@ -97,20 +63,86 @@ formValidationAvatar.enableValidation();
 
 // данные пользователя при открытии попап
 const userInfo = new UserInfo(
+  selectorAvatar,
   selectorNameInput, 
   selectorjobInput
 );
 
 // Экземпляры для попапов
-const popupProfile = new PopupWithForm(popupEditProfile, handleFormSubmitEditProfile, popupForm, popupInput);
+const popupProfile = new PopupWithForm({
+  popupSelector: popupEditProfile,
+  popupForm,
+  popupInput,
+  handleFormSubmitEditProfile: (inputValues) => {
+    popupProfile.renderLoading(true);
+    api.setUserInfo(inputValues)
+    .then((data) => {
+      userInfo.setUserInfo(data);
+      popupProfile.close();
+    })  
+  
+    .catch((err) => {console.log(err)})
+    
+    .finally(() => {
+      popupProfile.renderLoading(false);
+    })  
+  },
+  });
 
-const popupImage = new PopupWithForm(popupAddImage, handleSubmitAddImage, popupForm, popupInput);
+const popupImage = new PopupWithForm({
+  popupSelector: popupAddImage,
+  popupForm,
+  popupInput,
+  handleSubmitAddImage: (inputValues) => {
+    popupImage.renderLoading(true);
+    api.createCard(inputValues).then((data) => {
+      cardSelection.renderItems([data]);
+      popupImage.close();
+    }) 
+    
+    .catch((err) => {console.log(err)})
+  
+    .finally(() => {
+      popupImage.renderLoading(false);
+    })  
+  }});
+
+const popupDelete = new PopupConfirmDelete({
+  popupSelector: popupDeleteImage,
+  popupForm,
+  handleCardDelete: (card) => {
+      console.log(buttonConrirmDeletePopupImage);
+      buttonConrirmDeletePopupImage.textContent = "Удаление...";
+      api.deleteCard(card.id)
+      .then(() => {
+        card.deleteCard();
+        popupDelete.close();
+      })
+      .catch((err) => {console.log(err)})
+    
+      .finally(() => {
+        buttonConrirmDeletePopupImage.textContent = "Да";
+      }) 
+    }});
+
+const popupAvatar = new PopupWithForm({
+  popupSelector: popupChangeAvatar,
+  popupForm,
+  popupInput,
+  handleAvatarChange: (inputValues) => {
+    popupAvatar.renderLoading(true);
+    api.setAvaatar(inputValues).then((data) => {
+      avatarImage.src = data.avatar;
+      popupAvatar.close();
+    })
+    .catch((err) => {console.log(err)})
+  
+    .finally(() => {
+      popupAvatar.renderLoading(false);
+    }) 
+  }});
 
 const popupViewImage = new PopupWithImage(buttonZoomPopupImage, inputImage, inputImageTitle);
-
-const popupDelete = new PopupConfirmDelete(popupDeleteImage, popupForm, handleCardDelete);
-
-const popupAvatar = new PopupWithForm(popupChangeAvatar, handleAvatarChange, popupForm, popupInput);
 
 // Открытие попапов
 function popupOpenProfile() {
@@ -124,82 +156,41 @@ function popupOpenAddImige() {
   popupImage.open();
 }
 
-function handleCardClick(name, link) {
-  popupViewImage.open(name, link);
-}
-
-function popupOpenDelete(evt) {
-  popupDelete.open(evt);
-}
-
 function popupOpenAvatar(){
   formValidationAvatar.resetErrorForm();
   popupAvatar.open()
 }
 
-// Закрытие попапа 
-function handleFormSubmitEditProfile(inputValues) {
-  buttonSubmitPopupProfile.textContent = "Сохранение...";
-  api.setUserInfo(inputValues)
-  .then((data) => {
-    userInfo.setUserInfo(data);
-    popupProfile.close();
-  })  
-
-  .catch((err) => {console.log(err)})
-  
-  .finally(() => {
-    popupProfile.close();
-    buttonSubmitPopupProfile.textContent = "Сохранить";
-  })  
-}
-
-function handleSubmitAddImage(inputValues) {
-  buttonSubmitPopupImage.textContent = "Сохранение...";
-  api.createCard(inputValues).then((data) => {
-    cardSelection.renderItems([data]);
-    popupImage.close();
-  }) 
-  
-  .catch((err) => {console.log(err)})
-
-  .finally(() => {
-    popupImage.close();
-    buttonSubmitPopupImage.textContent = "Сохранить";
-  })  
-}
-
-function handleCardDelete (card) {
-  buttonConrirmDeletePopupImage.textContent = "Удаление...";
-  api.deleteCard(card.id)
-  .then(() => {
-    card.deleteCard();
-    popupDelete.close();
-  })
-  .catch((err) => {console.log(err)})
-
-  .finally(() => {
-    popupDelete.close();
-    buttonConrirmDeletePopupImage.textContent = "Да";
-  }) 
-}
-
-function handleAvatarChange(inputValues){
-  buttonSubmitPopupAvatar.textContent = "Сохранение...";
-  api.setAvaatar(inputValues).then((data) => {
-    avatarImage.src = data.avatar;
-    popupAvatar.close();
-  })
-  .catch((err) => {console.log(err)})
-
-  .finally(() => {
-    popupAvatar.close();
-    buttonSubmitPopupAvatar.textContent = "Сохранить";
-  }) 
-}
-
 function createCard(data) {
-  const card = new Card(data, newTemplate, handleCardClick, popupOpenDelete, userId, setLike, unsetLike, selectorButtonLike);
+  const card = new Card({
+    data,
+    newTemplate,
+    userId,
+    handleCardClick: (name, link) => {
+      popupViewImage.open(name, link);
+    },
+    handleOpenDelete: (card) => {
+      popupDelete.open(card);
+    }, 
+    handleSetLike: (cardId) => {
+      api.isLikeAdd(cardId)
+      .then((data) => {
+        console.log(data);
+        card.updateLike(data)
+      })
+    
+      .catch((err) => console.log(err))
+     }, 
+     handleUnsetLike: (cardId) => {
+      api.isLikeRemove(cardId)
+      .then((data) => {
+        card.updateLike(data)
+      })
+    
+      .catch((err) => console.log(err))
+     }
+   });
+   
   return card.generateCard();
 }
 

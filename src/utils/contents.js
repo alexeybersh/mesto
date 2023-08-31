@@ -12,6 +12,13 @@ export const validationConfig = {
   errorClass: 'popup__input-error_active'
 };
 
+export const apiConfig = {
+  url: apiUrl,
+  headers: {
+    "Content-Type": "application/json",
+    "authorization": apiToken
+  }}
+
 // шаблон
 export const newTemplate = "#element-template"
 // место для вставки карточек
@@ -30,6 +37,7 @@ export const popupChangeAvatar = ".popup_type_avatar";
 
 
 // данные пользователя
+export const selectorAvatar = ".profile__avatar"
 export const selectorNameInput = ".profile__title";
 export const selectorjobInput = ".profile__subtitle";
 // кнопка открытия попапа для редактирования профеля
@@ -73,7 +81,3 @@ export const inputLinkImage = document.querySelector(".popup__input_link_text");
 export const avatarImage = document.querySelector(".profile__avatar"); 
 export const avatarName = document.querySelector(".profile__title");
 export const avatarJob = document.querySelector(".profile__subtitle");
-
-export const countLike = ".elements__count-like";
-
-export const selectorButtonLike = ".elements__group-button"
