@@ -73,7 +73,7 @@ const popupProfile = new PopupWithForm({
   popupSelector: popupEditProfile,
   popupForm,
   popupInput,
-  handleFormSubmitEditProfile: (inputValues) => {
+  submitForm: (inputValues) => {
     popupProfile.renderLoading(true);
     api.setUserInfo(inputValues)
     .then((data) => {
@@ -93,7 +93,7 @@ const popupImage = new PopupWithForm({
   popupSelector: popupAddImage,
   popupForm,
   popupInput,
-  handleSubmitAddImage: (inputValues) => {
+  submitForm: (inputValues) => {
     popupImage.renderLoading(true);
     api.createCard(inputValues).then((data) => {
       cardSelection.renderItems([data]);
@@ -110,7 +110,7 @@ const popupImage = new PopupWithForm({
 const popupDelete = new PopupConfirmDelete({
   popupSelector: popupDeleteImage,
   popupForm,
-  handleCardDelete: (card) => {
+  submitForm: (card) => {
       console.log(buttonConrirmDeletePopupImage);
       buttonConrirmDeletePopupImage.textContent = "Удаление...";
       api.deleteCard(card.id)
@@ -129,7 +129,7 @@ const popupAvatar = new PopupWithForm({
   popupSelector: popupChangeAvatar,
   popupForm,
   popupInput,
-  handleAvatarChange: (inputValues) => {
+  submitForm: (inputValues) => {
     popupAvatar.renderLoading(true);
     api.setAvaatar(inputValues).then((data) => {
       avatarImage.src = data.avatar;
