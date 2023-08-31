@@ -1,7 +1,3 @@
-// api
-export const apiUrl = 'https://mesto.nomoreparties.co/v1/cohort-74';
-export const apiToken = "2d8f0eb6-386b-4584-9f34-de03cb37fac0";
-
 export const validationConfig = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
@@ -13,10 +9,10 @@ export const validationConfig = {
 };
 
 export const apiConfig = {
-  url: apiUrl,
+  url: 'https://mesto.nomoreparties.co/v1/cohort-74';,
   headers: {
     "Content-Type": "application/json",
-    "authorization": apiToken
+    "authorization": "2d8f0eb6-386b-4584-9f34-de03cb37fac0"
   }}
 
 // шаблон
