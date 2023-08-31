@@ -9,7 +9,7 @@ export const validationConfig = {
 };
 
 export const apiConfig = {
-  url: 'https://mesto.nomoreparties.co/v1/cohort-74';,
+  url: 'https://mesto.nomoreparties.co/v1/cohort-74',
   headers: {
     "Content-Type": "application/json",
     "authorization": "2d8f0eb6-386b-4584-9f34-de03cb37fac0"
