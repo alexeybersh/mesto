@@ -108,7 +108,6 @@ const popupDelete = new PopupConfirmDelete({
   popupSelector: popupDeleteImage,
   popupForm,
   submitForm: (card) => {
-      console.log(buttonConrirmDeletePopupImage);
       buttonConrirmDeletePopupImage.textContent = "Удаление...";
       api.deleteCard(card.id)
       .then(() => {
@@ -172,7 +171,6 @@ function createCard(data) {
     handleSetLike: (cardId) => {
       api.isLikeAdd(cardId)
       .then((data) => {
-        console.log(data);
         card.updateLike(data)
       })
     
