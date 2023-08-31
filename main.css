@@ -44,7 +44,7 @@
 .popup__set_active{max-height:none;opacity:1;pointer-events:all;visibility:visible}
 .popup__save-button_inactive{background-color:#fff;border:1px solid rgba(0,0,0,.15);border-radius:2px;color:rgba(0,0,0,.15);pointer-events:none}
 .popup_opacity{background-color:rgba(0,0,0,.9)}
-.popup_margin_zero{margin:0}
+.popup__save-button_margin_zero{margin:0}
 .popup__title_padding{padding:0 0 38px}
 .footer{background-color:#000;font-style:normal;margin:0;padding:0 200px 60px}@media screen and (max-width:768px){.footer{padding:0 19px 36px}}
 .footer__author{color:#545454;font-size:18px;font-weight:400;line-height:22px;margin:0;padding:0}@media screen and (max-width:890px){.footer__author{font-size:14px;line-height:17px}}
