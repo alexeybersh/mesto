@@ -20,7 +20,6 @@ import {
   popupInput,
   inputImage,
   inputImageTitle,
-  avatarImage,
   popupDeleteImage,
   popupChangeAvatar
  } from "../utils/contents.js";
