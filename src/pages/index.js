@@ -128,7 +128,7 @@ const popupAvatar = new PopupWithForm({
   submitForm: (inputValues) => {
     popupAvatar.renderLoading(true);
     api.setAvaatar(inputValues).then((data) => {
-      avatarImage.src = data.avatar;
+      userInfo.setUserInfo(data)
       popupAvatar.close();
     })
     .catch((err) => {console.log(err)})
