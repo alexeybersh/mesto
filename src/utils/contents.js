@@ -66,8 +66,3 @@ export const popupImageTitle = document.querySelector(".popup__image-title");
 
 export const inputNameImage = document.querySelector(".popup__input_input-name-image_text");
 export const inputLinkImage = document.querySelector(".popup__input_link_text");
-
-// аватар
-export const avatarImage = document.querySelector(".profile__avatar"); 
-export const avatarName = document.querySelector(".profile__title");
-export const avatarJob = document.querySelector(".profile__subtitle");
