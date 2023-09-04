@@ -22,9 +22,7 @@ export default class Card {
         this._originalImage.alt = this._name;
         this._title.textContent = this._name;
         this._countLike.textContent = (this.likes).length
-        this.likes.forEach(element => {
-        if( element._id === this.owner)  this._isLikeActive();
-        });
+        if (this.likes.some(e => e._id === this.owner))  this._isLikeActive();
         if (this.owner !== this.ownerImage) this._trash.classList.toggle("elements__trash_inactive")
     }
 
